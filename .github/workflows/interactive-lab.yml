@@ -6,12 +6,13 @@ on:
       - main
   workflow_dispatch:
 
-# Ensure write permissions to update README.md and current_step.txt
 permissions:
   contents: write
 
 jobs:
   grade_and_advance:
+    # Only run when a student creates and pushes to their own repository, not the root template
+    if: ${{ !github.event.repository.is_template }}
     name: "Evaluate Code & Advance Step"
     runs-on: ubuntu-latest
 
