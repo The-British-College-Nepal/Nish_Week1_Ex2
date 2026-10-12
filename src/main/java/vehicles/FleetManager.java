@@ -1,3 +1,4 @@
+
 package vehicles;
 
 import java.util.ArrayList;
@@ -21,8 +22,13 @@ public class FleetManager {
      * @param vehicle vehicle to add (must not be null)
      */
     public void addVehicle(Vehicle vehicle) {
-        // TODO [Step 3.1]: If vehicle is null, throw IllegalArgumentException
-        // TODO [Step 3.2]: Add vehicle to vehicles list
+        // TODO [Step 3.1]: Validate vehicle
+        if (vehicle == null) {
+            throw new IllegalArgumentException("Vehicle cannot be null");
+        }
+
+        // TODO [Step 3.2]: Add vehicle to the list
+        vehicles.add(vehicle);
     }
 
     public int getVehicleCount() {
@@ -30,24 +36,41 @@ public class FleetManager {
     }
 
     /**
-     * Calculates the total passenger capacity across all vehicles in the fleet.
-     * Must demonstrate polymorphic iteration over List<Vehicle>.
+     * Calculates the total passenger capacity across all vehicles.
      *
      * @return total passenger capacity
      */
     public int getTotalPassengerCapacity() {
-        // TODO [Step 3.3]: Loop through vehicles and sum each vehicle's getPassengerCapacity()
-        return 0;
+        // TODO [Step 3.3]: Sum passenger capacity
+        int totalCapacity = 0;
+
+        for (Vehicle v : vehicles) {
+            totalCapacity += v.getPassengerCapacity();
+        }
+
+        return totalCapacity;
     }
 
     /**
-     * Finds the fastest vehicle in the fleet based on maxSpeed.
+     * Finds the fastest vehicle based on maxSpeed.
      *
-     * @return the fastest Vehicle, or null if fleet is empty
+     * @return fastest Vehicle, or null if the fleet is empty
      */
     public Vehicle findFastestVehicle() {
-        // TODO [Step 3.4]: Return the vehicle with highest maxSpeed, or null if list is empty
-        return null;
+        // TODO [Step 3.4]: Find the fastest vehicle
+        if (vehicles.isEmpty()) {
+            return null;
+        }
+
+        Vehicle fastest = vehicles.get(0);
+
+        for (Vehicle v : vehicles) {
+            if (v.getMaxSpeed() > fastest.getMaxSpeed()) {
+                fastest = v;
+            }
+        }
+
+        return fastest;
     }
 
     public List<Vehicle> getVehicles() {
