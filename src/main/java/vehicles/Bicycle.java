@@ -15,6 +15,7 @@ package vehicles;
  *    - Throws IllegalArgumentException if distanceInKm <= 0.
  *    - Returns distanceInKm / getMaxSpeed().
  */
+
 public class Bicycle extends Vehicle {
 
     private int gearCount;
